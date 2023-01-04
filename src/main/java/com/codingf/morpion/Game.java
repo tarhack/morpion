@@ -5,7 +5,7 @@ import com.codingf.morpion.modeles.Square;
 import java.util.HashMap;
 
 /**
- * Main Classe
+ * Morpion Classe
  */
 public class Game {
     private int nbSquare;
@@ -62,5 +62,32 @@ public class Game {
 
     public void setPlayTurn(int playTurn) {
         this.playTurn = playTurn;
+    }
+
+    public int over(){
+        int winner = 0;
+        int line = 0;
+        // Contrôle en ligne
+        var iter = grid.entrySet().stream().iterator();
+        while(iter.hasNext()){
+            var squares = iter.next().getValue();
+            winner = squares[0].getPlayer() ;
+            if ( winner == 0 )
+                continue;
+            for(int idx=1;idx<squares.length;idx++){
+                if ( squares[idx].getPlayer() !=  winner ) {
+                    winner = 0;
+                    break;
+                }
+            }
+            if ( winner != 0 )
+                break ;
+        }
+        // Contrôle en colonnes
+        iter = grid.entrySet().stream().iterator();
+        // Contrôle en diagonale
+        iter = grid.entrySet().stream().iterator();
+
+        return winner;
     }
 }

@@ -2,7 +2,7 @@ package com.codingf.morpion;
 
 import java.util.Scanner;
 
-public class Main {
+public class Morpion {
 
     public static void main(String[] args) {
         int nbCases = 3;
@@ -35,9 +35,16 @@ public class Main {
             if ( ! game.play(line, col) )
                 System.out.println(String.format("La position %d, %d est déjà jouée !",line,col));
 
+            var winner = game.over();
+
+            if ( winner > 0 ){
+                System.out.println(String.format("Player %d WINN !!!", winner));
+                break;
+            }
 
             System.out.println(String.format("Line %d, colonne %d",line, col));
         }
+
         System.out.println("Fin du programme...");
     }
 }
