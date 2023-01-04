@@ -4,6 +4,9 @@ import com.codingf.morpion.modeles.Square;
 
 import java.util.HashMap;
 
+/**
+ * Main Classe
+ */
 public class Game {
     private int nbSquare;
     private int playTurn ;
