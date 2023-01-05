@@ -66,7 +66,6 @@ public class Game {
 
     public int over(){
         int winner = 0;
-        int line = 0;
         // Contrôle en ligne
         var iter = grid.entrySet().stream().iterator();
         while(iter.hasNext()){
@@ -83,10 +82,50 @@ public class Game {
             if ( winner != 0 )
                 break ;
         }
-        // Contrôle en colonnes
-        iter = grid.entrySet().stream().iterator();
-        // Contrôle en diagonale
-        iter = grid.entrySet().stream().iterator();
+
+        if ( winner != 0 )
+            return winner;
+
+        System.out.println("Début contôle colonnes");
+        for (int col=0;col<grid.size();col++){
+            winner = grid.get(0)[col].getPlayer();
+            if ( winner == 0)
+                continue;
+            for (int line=0;line<grid.size();line++){
+                if( grid.get(line)[col].getPlayer() != winner ){
+                    System.out.println(String.format("Echec line %d, col %d, winner %d <> case %d",line,col,winner,grid.get(line)[col].getPlayer()));
+                    winner = 0;
+                    break;
+                }
+            }
+            if ( winner > 0 )
+                break;
+        }
+
+        if ( winner != 0)
+            return winner;
+
+        System.out.println("Début contôle des diagonales");
+        System.out.println("haut gauche, bas droite");
+        winner = grid.get(0)[0].getPlayer();
+        for (int line=0;line<grid.size();line++){
+           if ( grid.get(line)[line].getPlayer() != winner ) {
+               winner = 0;
+               break;
+           }
+        }
+        if ( winner != 0)
+            return winner;
+
+        System.out.println("bas gauche, haut droite");
+        winner = grid.get(0)[grid.size()-1].getPlayer();
+        for (int line=1;line < grid.size();line++){
+            int col = grid.size()-1-line;
+            if ( grid.get(line)[col].getPlayer() != winner ) {
+                winner = 0;
+                break;
+            }
+        }
 
         return winner;
     }
