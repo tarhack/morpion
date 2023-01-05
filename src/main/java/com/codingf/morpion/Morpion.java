@@ -11,10 +11,11 @@ public class Morpion {
         String rep ;
         String positions[];
         int line =0, col = 0;
-
+        String sline="=".repeat(80);
         while (true){
             game.display();
-            System.out.println(String.format("Joueur %d , entrez la position (ligne, colonne)", game.getPlayTurn()));
+            int currentPlayer = game.getPlayTurn();
+            System.out.println(String.format("Joueur %d , entrez la position (ligne, colonne)", currentPlayer));
             rep = scanner.nextLine();
 
             if ( rep.equals(""))
@@ -38,11 +39,18 @@ public class Morpion {
             var winner = game.over();
 
             if ( winner > 0 ){
-                System.out.println(String.format("Player %d WINN !!!", winner));
-                break;
+                System.out.println(sline);
+                System.out.println(String.format("Le joueur %d GAGNE !!!", winner));
+                System.out.println(sline);
+                System.out.println("Voulez-vous refaire une partie (o, CR=Sortie) ");
+                rep= scanner.nextLine();
+                if ( rep.toLowerCase().equals("o"))
+                    continue;
+                else
+                    break;
             }
 
-            System.out.println(String.format("Line %d, colonne %d",line, col));
+            System.out.println(String.format("Joueur %s joue line %d, colonne %d",currentPlayer,line, col));
         }
 
         System.out.println("Fin du programme...");
