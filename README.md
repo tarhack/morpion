@@ -9,6 +9,10 @@
 ### Packagine automatisé avec utilisation de Maven & Ant
 
 ## Installations
+    - Telechargez la version correspondante à votre système 
+    - Dezippez dans un répertoire 
+    - Lancez le script morpion (.bat|.sh) en fonction de votre système
 
 [download windows install](https://github.com/tarhack/morpion/tree/main/builds/install_windows.zip)  
 [download Linux/mac install](https://github.com/tarhack/morpion/tree/main/builds/install_mac_linux.zip)
+
