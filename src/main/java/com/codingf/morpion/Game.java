@@ -8,7 +8,7 @@ import java.util.HashMap;
  * Morpion Classe
  */
 public class Game {
-    private int nbSquare;
+    private final int nbSquare;
     private int playTurn ;
     private HashMap<Integer, Square[]> grid;
 
@@ -17,7 +17,7 @@ public class Game {
         init();
     }
 
-    private void init() {
+    public void init() {
         playTurn = 1;
         grid = new HashMap<>();
         for (int line = 0; line < nbSquare; line++) {
@@ -86,14 +86,12 @@ public class Game {
         if ( winner != 0 )
             return winner;
 
-        System.out.println("Début contôle colonnes");
         for (int col=0;col<grid.size();col++){
             winner = grid.get(0)[col].getPlayer();
             if ( winner == 0)
                 continue;
             for (int line=0;line<grid.size();line++){
                 if( grid.get(line)[col].getPlayer() != winner ){
-                    System.out.println(String.format("Echec line %d, col %d, winner %d <> case %d",line,col,winner,grid.get(line)[col].getPlayer()));
                     winner = 0;
                     break;
                 }
@@ -105,8 +103,6 @@ public class Game {
         if ( winner != 0)
             return winner;
 
-        System.out.println("Début contôle des diagonales");
-        System.out.println("haut gauche, bas droite");
         winner = grid.get(0)[0].getPlayer();
         for (int line=0;line<grid.size();line++){
            if ( grid.get(line)[line].getPlayer() != winner ) {
@@ -117,7 +113,6 @@ public class Game {
         if ( winner != 0)
             return winner;
 
-        System.out.println("bas gauche, haut droite");
         winner = grid.get(0)[grid.size()-1].getPlayer();
         for (int line=1;line < grid.size();line++){
             int col = grid.size()-1-line;
@@ -127,6 +122,25 @@ public class Game {
             }
         }
 
-        return winner;
+        if ( winner != 0)
+            return winner;
+
+        // Test situation de blocage
+        boolean block = true;
+        for(int line=0;line< grid.size();line++){
+            var squares = grid.get(line);
+            for(int col=0;col<squares.length;col++){
+                if(squares[col].getPlayer() == 0) {
+                    block = false;  // Si une case peut-être jouée alors pas de blocage
+                    break;
+                }
+            }
+            if ( ! block )
+                break;
+        }
+
+        // System.out.println(String.format("Block O/N ? : %b , winner : %d ",block,winner));
+        
+        return block ? -1 : winner ;
     }
 }

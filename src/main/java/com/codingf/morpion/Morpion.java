@@ -26,7 +26,7 @@ public class Morpion {
                 line = Integer.valueOf(positions[0].trim());
                 col = Integer.valueOf(positions[1].trim());
             } catch (Exception e){
-                System.err.println("Erreor while Integer conversion :"+e.getLocalizedMessage());
+                System.err.println("Vous devez entrez des coordonnées valides line,col ou line col, err="+e.getLocalizedMessage());
                 continue;
             }
             if ( col >= nbCases || line >= nbCases ) {
@@ -38,15 +38,22 @@ public class Morpion {
 
             var winner = game.over();
 
-            if ( winner > 0 ){
-                System.out.println(sline);
-                System.out.println(String.format("Le joueur %d GAGNE !!!", winner));
-                System.out.println(sline);
+            if ( winner > 0 || winner < 0) {
+                if (winner > 0) {
+                    System.out.println(sline);
+                    System.out.println(String.format("Le joueur %d GAGNE !!!", winner));
+                    System.out.println(sline);
+                } else if (winner < 0) {
+                    System.out.println(sline);
+                    System.out.println(String.format("Situation de bloquage, on peut plus jouer !!!"));
+                    System.out.println(sline);
+                }
                 System.out.println("Voulez-vous refaire une partie (o, CR=Sortie) ");
-                rep= scanner.nextLine();
-                if ( rep.toLowerCase().equals("o"))
+                rep = scanner.nextLine();
+                if (rep.toLowerCase().equals("o")) {
+                    game.init();
                     continue;
-                else
+                } else
                     break;
             }
 
