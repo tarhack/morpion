@@ -2,6 +2,7 @@ package com.codingf.morpion;
 
 import com.codingf.morpion.modeles.Square;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -29,6 +30,13 @@ public class Game {
         }
     }
 
+    public void clear(){
+        try {
+            Process process = Runtime.getRuntime().exec("cls");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public boolean play(int line, int col){
         if ( grid.get(line)[col].getPlayer() > 0 )
             return false;
