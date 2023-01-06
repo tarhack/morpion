@@ -22,4 +22,9 @@
 - Chaque joueur joue à son tour, une case déjà jouée ne peut plus être rejouée
 - Il est possible que les deux joueurs se neutralisent dans ce cas la partie s'arrête
 
-![cas de blocage ](./images/morpion-blocage.jpg "Cas de blocage")
+- ### Le joueur 1 qui gagne car il a réalisé une diagonale
+- ![cas de gagne ](./images/morpion-gagne.jpg "Cas de gagne - le joueur 1 a gagné")
+- - ### Le joueur 2 qui gagne car il a réalisé une ligne
+- ![cas de gagne ](./images/morpion-gagne-ligne.jpg "Cas de gagne - le joueur 2 a gagné")
+- ### Les deux joueurs se sont neutralisé, aucun gagnant !
+- ![cas de blocage ](./images/morpion-blocage.jpg "Cas de blocage - aucun joueur ne gagne")

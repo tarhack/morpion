@@ -33,4 +33,11 @@ class GameTest {
         assertTrue(game.over()<0, "ERRUR Le jeu est en situation de blocage le retour de game.over() doit être négatif");
         System.out.println("<<<End tests for PLAY Method>>>");
     }
+    @org.junit.jupiter.api.Test
+    void clear() {
+        Game game = new Game(3);
+        game.display();
+        System.out.println("-------------------------------------------");
+        game.display();
+    }
 }

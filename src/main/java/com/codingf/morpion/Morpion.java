@@ -4,14 +4,21 @@ import java.util.Scanner;
 
 public class Morpion {
 
+    private static final String VERSION = "1.1.3" ;
+    private static void help(){
+        System.out.println(String.format("Moripon Version %s",VERSION));
+    }
+
     public static void main(String[] args) {
         int nbCases = 3;
+        help();
         Game game = new Game(nbCases);
         Scanner scanner = new Scanner(System.in);
         String rep ;
         String positions[];
         int line =0, col = 0;
         String sline="=".repeat(80);
+
         while (true){
             game.display();
             int currentPlayer = game.getPlayTurn();
@@ -42,6 +49,7 @@ public class Morpion {
                 if (winner > 0) {
                     System.out.println(sline);
                     System.out.println(String.format("Le joueur %d GAGNE !!!", winner));
+                    game.display();
                     System.out.println(sline);
                 } else if (winner < 0) {
                     System.out.println(sline);

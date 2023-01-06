@@ -32,7 +32,7 @@ public class Game {
 
     public void clear(){
         try {
-            Process process = Runtime.getRuntime().exec("cls");
+            Runtime.getRuntime().exec("cmd /c cls");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -48,19 +48,20 @@ public class Game {
     }
 
     public void display() {
+        clear();
         var iter = grid.entrySet().stream().iterator();
         System.out.print("  ");
         for(int idx=0;idx < grid.size();idx++)
             System.out.print(idx+" ");
-        System.out.println("");
+        System.out.println(" ");
         while (iter.hasNext()) {
             var square = iter.next();
             System.out.print(square.getKey() );
             var line = square.getValue();
-            for (int i = 0 ; i < line.length; i++) {
-                System.out.print(" "+line[i].display());
+            for (Square value : line) {
+                System.out.print(" " + value.display());
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
@@ -68,9 +69,6 @@ public class Game {
         return playTurn;
     }
 
-    public void setPlayTurn(int playTurn) {
-        this.playTurn = playTurn;
-    }
 
     public int over(){
         int winner = 0;
@@ -137,8 +135,8 @@ public class Game {
         boolean block = true;
         for(int line=0;line< grid.size();line++){
             var squares = grid.get(line);
-            for(int col=0;col<squares.length;col++){
-                if(squares[col].getPlayer() == 0) {
+            for (Square square : squares) {
+                if (square.getPlayer() == 0) {
                     block = false;  // Si une case peut-être jouée alors pas de blocage
                     break;
                 }
