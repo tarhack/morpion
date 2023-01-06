@@ -23,17 +23,27 @@ public class Morpion {
     public static void main(String[] args) throws IOException {
         int nbCases = 3;
         help();
+        System.out.println(String.format("Nbre arguments : %d",args.length));
+        if ( args.length > 0 ){
+            for ( int idx=0;idx< args.length;idx++){
+                var p = args[idx];
+                if ( p.startsWith("--number")){
+                    nbCases = Integer.valueOf(args[idx+1]);
+                }
+            }
+        }
+
         Game game = new Game(nbCases);
         Scanner scanner = new Scanner(System.in);
         String rep ;
-        String positions[];
+        String[] positions;
         int line =0, col = 0;
         String sline="=".repeat(80);
 
         while (true){
             game.display();
             int currentPlayer = game.getPlayTurn();
-            System.out.println(String.format("Joueur %d , entrez la position (ligne, colonne)", currentPlayer));
+            System.out.printf("Joueur %d , entrez la position (ligne, colonne)%n", currentPlayer);
             rep = scanner.nextLine();
 
             if ( rep.equals(""))
