@@ -1,15 +1,26 @@
 package com.codingf.morpion;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Morpion {
 
     private static final String VERSION = "1.1.3" ;
-    private static void help(){
+    private static void help() throws IOException {
         System.out.println(String.format("Moripon Version %s",VERSION));
+        Morpion.banner();
+        System.out.println(" ");;
     }
 
-    public static void main(String[] args) {
+    public static void banner() throws IOException {
+        ClassLoader classLoader = Morpion.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("banner.txt");
+        inputStream.transferTo(System.out);
+        inputStream.close();
+    }
+
+    public static void main(String[] args) throws IOException {
         int nbCases = 3;
         help();
         Game game = new Game(nbCases);

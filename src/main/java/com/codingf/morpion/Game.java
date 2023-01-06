@@ -48,7 +48,7 @@ public class Game {
     }
 
     public void display() {
-        clear();
+        //clear();
         var iter = grid.entrySet().stream().iterator();
         System.out.print("  ");
         for(int idx=0;idx < grid.size();idx++)

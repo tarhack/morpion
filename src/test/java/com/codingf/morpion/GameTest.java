@@ -1,5 +1,7 @@
 package com.codingf.morpion;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
 
@@ -39,5 +41,9 @@ class GameTest {
         game.display();
         System.out.println("-------------------------------------------");
         game.display();
+    }
+    @org.junit.jupiter.api.Test
+    void banner() throws IOException {
+        Morpion.banner();
     }
 }
