@@ -2,11 +2,16 @@ package com.codingf.morpion;
 
 import com.codingf.morpion.modeles.Square;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Morpion Classe
+ * Cette classe execute toute la logique du jeu du morpion
+ *
+ * Elle a la reponsabilité des fonctions suivantes :
+ *  -1 Initilisation d'une partie, avec le nombre de cases du jeu
+ *  -2 Elle joue un coup, et attribue le tour au joueur suivant
+ *  -3 Elle restitue le symbole du joueur (X, O, etc ...)
+ *  -4 Elle calcule l'état du jeu : le jeu continue, il y a un gagnant, le jeu est bloqué
  */
 public class Game {
     private final int nbSquare;
@@ -16,6 +21,10 @@ public class Game {
     public Game(int nbSquare) {
         this.nbSquare = nbSquare;
         init();
+    }
+
+    public HashMap<Integer, Square[]> getGrid() {
+        return grid;
     }
 
     public void init() {
@@ -29,14 +38,6 @@ public class Game {
             grid.put(line, squares);
         }
     }
-
-    public void clear(){
-        try {
-            Runtime.getRuntime().exec("cmd /c cls");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public boolean play(int line, int col){
         if ( grid.get(line)[col].getPlayer() > 0 )
             return false;
@@ -45,24 +46,6 @@ public class Game {
 
         playTurn = playTurn==1?2:1;
         return true;
-    }
-
-    public void display() {
-        //clear();
-        var iter = grid.entrySet().stream().iterator();
-        System.out.print("  ");
-        for(int idx=0;idx < grid.size();idx++)
-            System.out.print(idx+" ");
-        System.out.println(" ");
-        while (iter.hasNext()) {
-            var square = iter.next();
-            System.out.print(square.getKey() );
-            var line = square.getValue();
-            for (Square value : line) {
-                System.out.print(" " + value.display());
-            }
-            System.out.println(" ");
-        }
     }
 
     public int getPlayTurn() {
