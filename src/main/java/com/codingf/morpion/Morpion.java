@@ -1,7 +1,7 @@
 package com.codingf.morpion;
 
-import com.codingf.morpion.modeles.Square;
-import com.codingf.morpion.tools.Clear;
+import com.codingf.morpion.domain.Game;
+import com.codingf.morpion.tools.DisplayConsole;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,37 +10,17 @@ import java.util.Scanner;
 
 public class Morpion {
 
-    private static final String VERSION = "1.2.0" ;
+    private static final String VERSION = "1.2.1" ;
     private static void help() throws IOException {
         System.out.printf("Moripon Version %s%n",VERSION);
         Morpion.banner("banner.txt");
         System.out.println(" ");
-        System.out.println("Amusez vous : \uD83D\uDE0D");
-        System.out.println("╔════╦════╗");
-        System.out.println("║ -  ║  - ║");
-        System.out.println("╠════╬════╣");
-        System.out.println("║ °  ║ °  ║");
-        System.out.println("╚════╩════╝");
     }
 
-    public static void display(Game game,boolean clear) throws IOException, InterruptedException {
+    public static void display(Game game, boolean clear) throws IOException, InterruptedException {
         if ( clear )
-            Clear.clear();
-        var grid = game.getGrid();
-        var iter =grid.entrySet().stream().iterator();
-        System.out.print("  ");
-        for(int idx=0;idx < grid.size();idx++)
-            System.out.print(idx+" ");
-        System.out.println(" ");
-        while (iter.hasNext()) {
-            var square = iter.next();
-            System.out.print(square.getKey() );
-            var line = square.getValue();
-            for (Square value : line) {
-                System.out.print(" " + value.display());
-            }
-            System.out.println(" ");
-        }
+            DisplayConsole.clear();
+        DisplayConsole.display(game);
     }
     public static void banner(String fileName) throws IOException {
         ClassLoader classLoader = Morpion.class.getClassLoader();
@@ -51,8 +31,6 @@ public class Morpion {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         int nbCases = 3;
-        help();
-        System.out.printf("Nbre cases : %d%n",args.length);
         if ( args.length > 0 ){
             for ( int idx=0;idx< args.length;idx++){
                 var p = args[idx];
@@ -69,6 +47,9 @@ public class Morpion {
         int line, col ;
         String sline="=".repeat(120);
 
+
+        DisplayConsole.clear();
+        help();
         boolean clear=false;
 
         while (true){

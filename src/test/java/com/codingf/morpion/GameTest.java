@@ -1,5 +1,7 @@
 package com.codingf.morpion;
 
+import com.codingf.morpion.domain.Game;
+
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,7 +85,6 @@ class GameTest {
     }
 
     private String interline(int count){
-        String interline = "╠════╬════╣" ;
         String line = "╠═";
         for (int col=0;col<count-1;col++){
             line+="══╬═";

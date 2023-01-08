@@ -1,13 +1,14 @@
-package com.codingf.morpion;
+package com.codingf.morpion.domain;
 
 import com.codingf.morpion.modeles.Square;
 
 import java.util.HashMap;
 
 /**
- * Cette classe execute toute la logique du jeu du morpion
- *
+ * Cette classe execute toute la logique du jeu du Morpion
+ *  <p>
  * Elle a la reponsabilité des fonctions suivantes :
+ * <p>
  *  -1 Initilisation d'une partie, avec le nombre de cases du jeu
  *  -2 Elle joue un coup, et attribue le tour au joueur suivant
  *  -3 Elle restitue le symbole du joueur (X, O, etc ...)
@@ -23,8 +24,13 @@ public class Game {
         init();
     }
 
+
     public HashMap<Integer, Square[]> getGrid() {
         return grid;
+    }
+
+    public int getNbSquare() {
+        return nbSquare;
     }
 
     public void init() {
