@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Morpion {
 
-    private static final String VERSION = "1.2.1" ;
+    private static final String VERSION = "1.2.2" ;
     private static void help() throws IOException {
         System.out.printf("Moripon Version %s%n",VERSION);
         Morpion.banner("banner.txt");
