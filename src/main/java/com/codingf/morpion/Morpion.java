@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class Morpion {
 
-    private static final String VERSION = "1.2.2" ;
+    private static final String VERSION = "1.3.0" ;
     private static void help() throws IOException {
-        System.out.printf("Moripon Version %s%n",VERSION);
+        System.out.printf("Morpion (TicTacToe) Version %s%n",VERSION);
         Morpion.banner("banner.txt");
         System.out.println(" ");
     }
