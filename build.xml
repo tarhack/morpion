@@ -13,7 +13,6 @@
         <copy file="${file.jar}" todir="${script.dir}" />
     </target>
 
-
     <target name="build-install" depends="delivery-prepare">
         <echo message="Build Install  : ${file.jar}" />
         <echo message="Zip file to ${build.dir}" />
