@@ -8,14 +8,14 @@
     <property name="build.dir" value="${basedir}/builds/"/>
 
     <target name="delivery-prepare">
-        <echo message="Delivery  : ${file.jar}" />
-        <echo message="Copy Jar File ${file.jar} to ${script.dir}" />
+        <echo level="info" message="Delivery  : ${file.jar}" />
+        <echo level="info" message="Copy Jar File ${file.jar} to ${script.dir}" />
         <copy file="${file.jar}" todir="${script.dir}" />
     </target>
 
     <target name="build-install" depends="delivery-prepare">
-        <echo message="Build Install  : ${file.jar}" />
-        <echo message="Zip file to ${build.dir}" />
+        <echo level="info" message="Build Install  : ${file.jar}" />
+        <echo level="info" message="Zip file to ${build.dir}" />
         <zip destfile="builds/install_windows.zip" basedir="scripts" update="true" excludes="*.sh"/>
         <zip destfile="builds/install_mac_linux.zip" basedir="scripts" update="true" excludes="*.bat"/>
     </target>
