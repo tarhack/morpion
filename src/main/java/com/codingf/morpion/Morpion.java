@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class Morpion {
 
-    private static final String VERSION = "1.3.0" ;
+    private static final String VERSION = "1.4.0" ;
     private static void help() throws IOException {
         System.out.printf("Morpion (TicTacToe) Version %s%n",VERSION);
-        Morpion.banner("banner.txt");
+        Morpion.banner("banner2.txt");
         System.out.println(" ");
     }
 
@@ -65,20 +65,29 @@ public class Morpion {
             if ( rep.equals(""))
                 break;
 
-            positions = rep.split("[ ,]");
+//            positions = rep.split("[ ,]");
+//            try {
+//                line = Integer.parseInt(positions[0].trim());
+//                col = Integer.parseInt(positions[1].trim());
+//            } catch (Exception e){
+//                System.err.println("Vous devez entrez des coordonnées valides line,col ou line col, err="+e.getLocalizedMessage());
+//                continue;
+//            }
+//            if ( col >= nbCases || line >= nbCases ) {
+//                System.out.printf("Le nombre de ligne/colonne ne peut être supérieur %d%n",nbCases-1);
+//                continue;
+//            }
+
+            int numCase;
             try {
-                line = Integer.parseInt(positions[0].trim());
-                col = Integer.parseInt(positions[1].trim());
+                numCase = Integer.parseInt(rep);
             } catch (Exception e){
                 System.err.println("Vous devez entrez des coordonnées valides line,col ou line col, err="+e.getLocalizedMessage());
                 continue;
             }
-            if ( col >= nbCases || line >= nbCases ) {
-                System.out.printf("Le nombre de ligne/colonne ne peut être supérieur %d%n",nbCases-1);
-                continue;
-            }
-            if ( ! game.play(line, col) )
-                System.out.printf("La position %d, %d est déjà jouée !%n",line,col);
+
+            if ( ! game.play(numCase) )
+                System.out.printf("La position %d est déjà jouée !%n",numCase);
 
             var winner = game.over();
 
@@ -103,7 +112,7 @@ public class Morpion {
                     break;
             }
 
-            System.out.printf("Joueur %s joue line %d, colonne %d%n",currentPlayer,line, col);
+            System.out.printf("Joueur %s joue case %d %n",currentPlayer,numCase);
         }
 
         System.out.println("Fin du programme...");

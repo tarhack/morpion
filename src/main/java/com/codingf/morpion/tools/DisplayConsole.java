@@ -5,7 +5,7 @@ import com.codingf.morpion.domain.Game;
 import java.io.IOException;
 
 /**
- * Cette classe à la responsabilité de l'affichhage formaté de la grille de jeu
+ * Cette classe à la responsabilité de l'affichage formaté de la grille de jeu
  * Elle contient l'algorithme d'affichage et la mise en forme des lignes etc...
  * Elle contient la méthode clear() permettant d'effacer l'écran
  */
@@ -17,44 +17,44 @@ public class DisplayConsole {
         String tabs = "\t".repeat(8);
         String interligne = interline(count);
         System.out.println("\n\n\n");
-        // Display TOP of Grid  ╔════╦════╗
+        // Display TOP of Grid  ╔═════╦═════╗
         top(count,tabs);
         System.out.printf("%s",tabs);
-        // Display Body of Grid ║ -  ║  - ║
+        // Display Body of Grid ║  -  ║  -  ║
         for(int line=0;line<count;line++){
             var cases = grid.get(line);
             for(int col=0;col<count;col++){
-                System.out.printf("║ %s ", cases[col].display());
+                System.out.printf("║ %2s ", cases[col].display().equals("-") ? game.toCaseNumber(game,line,col) : cases[col].display() );
             }
             if ( line < count-1 )
-                System.out.printf("║%n%s%s%n%s",tabs, interligne,tabs);
+                System.out.printf(" ║%n%s%s%n%s",tabs, interligne,tabs);
             else
-                System.out.printf("║%n");
+                System.out.printf(" ║%n");
         }
-        // Bottom Grid          ╚════╩════╝
+        // Bottom Grid          ╚═════╩═════╝
         bottom(count,tabs);
     }
 
     private static String interline(int count){
         // Interligne ╠═══╬═══╬═══╣
-        return "╠═" + "══╬═".repeat(Math.max(0, count - 1)) +
-                "══╣";
+        return "╠══" + "══╬══".repeat(Math.max(0, count - 1)) +
+                "═══╣";
     }
 
     private static void top(int count, String tabs){
-        System.out.printf("%s╔═",tabs);
+        System.out.printf("%s╔═══",tabs);
         for(int line=0;line<count-1;line++){
-            System.out.print("══╦═");
+            System.out.print("═╦═══");
         }
         System.out.printf("══╗%n");
     }
 
     private static void bottom(int count, String tabs){
-        System.out.printf("%s╚═",tabs);
+        System.out.printf("%s╚══",tabs);
         for(int line=0;line<count-1;line++){
-            System.out.print("══╩═");
+            System.out.print("══╩══");
         }
-        System.out.printf("══╝%n");
+        System.out.printf("═══╝%n");
     }
 
     public static void clear() throws IOException, InterruptedException {

@@ -1,11 +1,18 @@
 package com.codingf.morpion;
 
 import com.codingf.morpion.domain.Game;
+import com.codingf.morpion.tools.DisplayConsole;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
+
+    @org.junit.jupiter.api.Test
+    void displayConsole(){
+        DisplayConsole.display(new Game(4));
+    }
+
 
     @org.junit.jupiter.api.Test
     void play() throws IOException,InterruptedException {
@@ -25,16 +32,31 @@ class GameTest {
         game.play(1,1);
         Morpion.display(game,false);
         System.out.printf("Winner %d, Next Turn : %d%n",game.over(), game.getPlayTurn());
-        // Pass III
-        // X O X
-        // O O X
-        // O O X
-        game.play(2,0);
-        game.play(2,2);
+        System.out.println("Pass III");
+        game.init();
+
+        // Situation de blocage
+        /**
+         * ╔════╦════╦═════╗
+         * ║  X ║  X ║  O  ║
+         * ╠════╬════╬═════╣
+         * ║  O ║  O ║  X  ║
+         * ╠════╬════╬═════╣
+         * ║  X ║  O ║  X  ║
+         * ╚════╩════╩═════╝
+         */
+        game.play(0,0); //X
+        game.play(0,2);
+        game.play(0,1); //X
+        game.play(1,0);
+        game.play(1,2); //X
+        game.play(1,1);
+        game.play(2,0); //X
         game.play(2,1);
+        game.play(2,2); //X
         Morpion.display(game,false);
         System.out.printf("Winner %d, Next Turn : %d%n",game.over(), game.getPlayTurn());
-        assertTrue(game.over()<0, "ERRUR Le jeu est en situation de blocage le retour de game.over() doit être négatif");
+        assertTrue(game.over()<0, "ERRRUR Le jeu est en situation de blocage le retour de game.over() doit être négatif");
         System.out.println("<<<End tests for PLAY Method>>>");
     }
     @org.junit.jupiter.api.Test

@@ -44,6 +44,22 @@ public class Game {
             grid.put(line, squares);
         }
     }
+
+    /**
+     * Cette méthode convertie un numéro de case en coordonnées ligne, colonne de l'aire de jeu
+     *
+     */
+    public boolean play(int numCase){
+        var coords = toLineAndColumn(numCase);
+        return play(coords[0],coords[1]);
+    }
+
+    /**
+     *
+     * @param line
+     * @param col
+     * @return
+     */
     public boolean play(int line, int col){
         if ( grid.get(line)[col].getPlayer() > 0 )
             return false;
@@ -138,4 +154,31 @@ public class Game {
         
         return block ? -1 : winner ;
     }
+
+    /**
+     * Cette méthode convertie une coordonnée ligne, colonne en numéro de case sur aire de jeu
+     * ligne, colonne et numéro commencent à 0
+     * @param game - Aire de jeu
+     * @param line - No Ligne
+     * @param col - No Colonne
+     * @return : Un numéro de case
+     */
+    public int toCaseNumber(Game game, int line, int col){
+        int numCase = line * getNbSquare() ;
+        numCase += col;
+        return numCase;
+    }
+
+    /**
+     * Cette méthode convertie un numéro de case en coordonnées ligne, colonne de l'aire de jeu
+     * ligne, colonne et numéro commencent à 0
+     * @param numCase
+     * @return : Un tableau de int où t[0] =ligne, t[1]=colonne
+     */
+    public int[] toLineAndColumn(int numCase){
+        int l = numCase / getNbSquare();
+        int c = numCase % getNbSquare();
+        return new int[]{l,c} ;
+    }
+
 }
