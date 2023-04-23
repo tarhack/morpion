@@ -2,6 +2,7 @@ package com.codingf.morpion;
 
 import com.codingf.morpion.domain.Game;
 import com.codingf.morpion.tools.DisplayConsole;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ class GameTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     void play() throws IOException,InterruptedException {
         Game game = new Game(3);
         System.out.println("<<<Start tests for PLAY Method>>>");
@@ -59,14 +60,14 @@ class GameTest {
         assertTrue(game.over()<0, "ERRRUR Le jeu est en situation de blocage le retour de game.over() doit être négatif");
         System.out.println("<<<End tests for PLAY Method>>>");
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void clear() throws IOException, InterruptedException {
         System.out.println("-------------------------------------------");
         // Morpion.clear();
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void banner() throws IOException {
         Morpion.banner("banner1.txt");
         int joueur = 1;
@@ -74,7 +75,7 @@ class GameTest {
         joueur = 2;
         Morpion.banner(String.format("joueur_%d.txt", joueur));
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void grid(){
         String[] players = {"O","X","O","X","O"} ;
         String dline = "=".repeat(80);

@@ -15,9 +15,12 @@ import java.util.HashMap;
  *  -4 Elle calcule l'état du jeu : le jeu continue, il y a un gagnant, le jeu est bloqué
  */
 public class Game {
-    private final int nbSquare;
+    private int nbSquare;
     private int playTurn ;
     private HashMap<Integer, Square[]> grid;
+
+    public Game() {
+    }
 
     public Game(int nbSquare) {
         this.nbSquare = nbSquare;
@@ -33,13 +36,26 @@ public class Game {
         return nbSquare;
     }
 
+    public void setNbSquare(int nbSquare) {
+        this.nbSquare = nbSquare;
+    }
+
+    public void setPlayTurn(int playTurn) {
+        this.playTurn = playTurn;
+    }
+
+    public void setGrid(HashMap<Integer, Square[]> grid) {
+        this.grid = grid;
+    }
+
     public void init() {
         playTurn = 1;
         grid = new HashMap<>();
+        int number =0;
         for (int line = 0; line < nbSquare; line++) {
             Square[] squares = new Square[nbSquare];
             for (int col = 0; col < nbSquare; col++) {
-                squares[col] = new Square(0);
+                squares[col] = new Square(0, number++);
             }
             grid.put(line, squares);
         }
@@ -56,17 +72,19 @@ public class Game {
 
     /**
      *
-     * @param line
-     * @param col
+     * @param line is the line number on Square
+     * @param col is column number on Square
      * @return
      */
     public boolean play(int line, int col){
-        if ( grid.get(line)[col].getPlayer() > 0 )
+        if ( grid.get(line)[col].getPlayer() > 0
+                || line > nbSquare || col > nbSquare )
             return false;
         else
             grid.get(line)[col].setPlayer(playTurn);
 
         playTurn = playTurn==1?2:1;
+
         return true;
     }
 
