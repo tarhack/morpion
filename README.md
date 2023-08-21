@@ -4,9 +4,9 @@
 
 ### Java POO
 
-### Junit pour tester le modèle et le comportement
+### JUnit pour tester le modèle et le comportement
 
-### Packagine automatisé avec utilisation de Maven & Ant
+### Packaging automatisé avec utilisation de Maven & Ant
 
 ## Installations
     - Telechargez la version correspondante à votre système 
@@ -19,7 +19,7 @@
 ### Rappel des règles du jeu
 - Affichage de la grille de jeu (début)
 - ![cas de gagne ](./images/morpion-jeu-cases.jpg "Cas de gagne - le joueur 1 a gagné")
-- le premier joueur à réaliser une ligne, une colonne ou une diagonale sur jeu à gagné
+- le premier joueur à réaliser une ligne, une colonne ou une diagonale sur la grille à gagné
 - Chaque joueur joue à son tour, une case déjà jouée ne peut plus être rejouée
 - Il est possible que les deux joueurs se neutralisent dans ce cas la partie s'arrête
 
@@ -27,5 +27,5 @@
 - ![cas de gagne ](./images/morpion-gagne-diagonale.jpg "Cas de gagne - le joueur 1 a gagné")
 - - ### Le joueur 2 qui gagne car il a réalisé une ligne
 - ![cas de gagne ](./images/morpion-gagne-ligne.jpg "Cas de gagne - le joueur 2 a gagné")
-- ### Les deux joueurs se sont neutralisé, aucun gagnant !
+- ### Les deux joueurs se sont neutralisés, aucun gagnant !
 - ![cas de blocage ](./images/morpion-blocage.jpg "Cas de blocage - aucun joueur ne gagne")
