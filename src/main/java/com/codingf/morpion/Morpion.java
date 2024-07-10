@@ -62,21 +62,8 @@ public class Morpion {
             System.out.printf("Joueur %d , entrez le numéro de case à jouer %n", currentPlayer);
             rep = scanner.nextLine();
 
-            if (rep.equals(""))
+            if (rep.isEmpty())
                 break;
-
-//            positions = rep.split("[ ,]");
-//            try {
-//                line = Integer.parseInt(positions[0].trim());
-//                col = Integer.parseInt(positions[1].trim());
-//            } catch (Exception e){
-//                System.err.println("Vous devez entrer des coordonnées valides line, col ou line col, err="+e.getLocalizedMessage());
-//                continue;
-//            }
-//            if ( col >= nbCases || line >= nbCases ) {
-//                System.out.printf("Le nombre de lignes/colonne ne peut être supérieur %d%n",nbCases-1);
-//                continue;
-//            }
 
             int numCase;
             try {
